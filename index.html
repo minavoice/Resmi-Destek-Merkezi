@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resmi Destek Merkezi</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; margin: 0; display: flex; justify-content: center; min-height: 100vh; }
+        .panel { width: 100%; max-width: 400px; background: white; display: flex; flex-direction: column; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        .header { background-color: #1a3a5a; color: white; text-align: center; padding: 25px 10px; }
+        .header h1 { margin: 0; font-size: 24px; font-weight: bold; }
+        .header p { margin: 5px 0 0; font-size: 14px; letter-spacing: 2px; font-weight: bold; }
+        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; flex-grow: 1; }
+        .card { border-radius: 40px; padding: 15px; text-align: center; color: white; min-height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 2px 4px 8px rgba(0,0,0,0.2); }
+        .card h2 { font-size: 14px; margin: 0 0 10px 0; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 5px; width: 90%; font-weight: bold; }
+        .card p { font-size: 10px; margin: 0 0 10px 0; line-height: 1.3; }
+        .info { font-size: 11px; font-weight: bold; }
+        /* Renkler */
+        .super { background-color: #b51a66; }
+        .vip { background-color: #26b1a5; }
+        .acm { background-color: #f39c12; }
+        .etkinlik { background-color: #e74c3c; }
+        .footer { background-color: #e61a2e; color: white; padding: 20px; text-align: center; margin-top: auto; }
+        .footer b { display: block; font-size: 13px; margin-bottom: 5px; }
+        .footer p { font-size: 11px; margin: 0; opacity: 0.9; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <div class="header">
+            <h1>RESMİ DESTEK MERKEZİ</h1>
+            <p>OFFICIAL</p>
+        </div>
+        <div class="container">
+            <div class="card super">
+                <h2>SÜPER ADMİN</h2>
+                <p>Uygulama yönetimi ve genel denetim.</p>
+                <div class="info">(ID: TR01)<br>MİRAÇ BEY</div>
+            </div>
+            <div class="card vip">
+                <h2>VIP ADMİN</h2>
+                <p>ŞARJ ÖDÜLLERİ ÖZEL HEDİYE VE BENZERİ KONULAR İÇİN</p>
+                <div class="info">(TR05)<br>NARE HANIM</div>
+            </div>
+            <div class="card acm">
+                <h2>ACM ADMİN</h2>
+                <p>Uygulamanın huzuru, susturma ve yasaklama.</p>
+                <div class="info">(ID: TR72 & TR06)<br>AZADİ BEY & AHSEN HANIM</div>
+            </div>
+            <div class="card etkinlik">
+                <h2>ETKİNLİK ADMİNİ</h2>
+                <p>ETKİNLİK VE ÖDÜLLER İLE İLGİLİ KONULAR İÇİN BANNER EKLEME VE REKLAM TALEPLERİ</p>
+                <div class="info">(ID: TR02)<br>İNCİ HANIM</div>
+            </div>
+        </div>
+        <div class="footer">
+            <b>DİKKAT: KANITINIZ OLMAYAN ŞİKAYETLER DEĞERLENDİRMEYE ALINMAZ.</b>
+            <p>(Ekran görüntüsü veya video kaydı ibraz edilmesi zorunludur.)</p>
+        </div>
+    </div>
+</body>
+</html>
