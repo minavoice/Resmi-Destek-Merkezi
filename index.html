@@ -91,4 +91,106 @@
 
         .alert-box {
             background: #e61a2e;
-            
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 3px solid #ff4d6d;
+            box-shadow: 0 0 20px rgba(230, 26, 46, 0.5);
+            /* PATLAMA ANİMASYONU */
+            animation: pulse-explosion 0.6s infinite alternate;
+        }
+
+        .alert-box h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            font-weight: 900;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-box b {
+            display: block;
+            font-size: 14px;
+            font-weight: 900; /* En kalın yazı */
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .alert-box p {
+            font-size: 12px;
+            font-weight: 800;
+            margin: 0;
+            opacity: 1;
+        }
+
+        /* 3D Emoji Dönme */
+        .emoji-3d {
+            display: inline-block;
+            animation: rotate 2s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        /* Patlama Efekti (Büyüme ve Parlama) */
+        @keyframes pulse-explosion {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 10px rgba(230, 26, 46, 0.6);
+                filter: brightness(1);
+            }
+            100% {
+                transform: scale(1.02);
+                box-shadow: 0 0 30px rgba(230, 26, 46, 0.9), 0 0 10px white;
+                filter: brightness(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <div class="header">
+            <h1>RESMİ DESTEK MERKEZİ</h1>
+            <p>OFFICIAL</p>
+        </div>
+
+        <div class="container">
+            <div class="card super">
+                <h2>SÜPER ADMİN</h2>
+                <p>Uygulama yönetimi ve genel denetim.</p>
+                <div class="info">(ID: TR01) MİRAÇ BEY</div>
+            </div>
+            <div class="card vip">
+                <h2>VIP ADMİN</h2>
+                <p>ŞARJ ÖDÜLLERİ ÖZEL HEDİYE VE BENZERİ KONULAR İÇİN</p>
+                <div class="info">(TR05) NARE HANIM</div>
+            </div>
+            <div class="card acm">
+                <h2>ACM ADMİN</h2>
+                <p>Uygulamanın huzuru, susturma ve yasaklama.</p>
+                <div class="info">(ID: TR72) AZADİ BEY</div>
+            </div>
+            <div class="card etkinlik">
+                <h2>ETKİNLİK ADMİNİ</h2>
+                <p>ETKİNLİK VE ÖDÜLLER İLE İLGİLİ KONULAR İÇİN REKLAM TALEPLERİ</p>
+                <div class="info">(ID: TR02) İNCİ HANIM</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="alert-box">
+                <h3><span class="emoji-3d">🚨</span> ÖNEMLİ <span class="emoji-3d">🚨</span></h3>
+                <b>DİKKAT: KANITINIZ OLMAYAN ŞİKAYETLER DEĞERLENDİRMEYE ALINMAZ.</b>
+                <p>(Ekran görüntüsü veya video kaydı zorunludur.)</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
