@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resmi Destek Merkezi</title>
     <style>
+        /* --- Mevcut Stillerin Devamı --- */
         body { font-family: sans-serif; background-color: #f4f4f4; margin: 0; display: flex; justify-content: center; min-height: 100vh; }
         .panel { width: 100%; max-width: 400px; background: white; display: flex; flex-direction: column; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
         .header { background-color: #1a3a5a; color: white; text-align: center; padding: 25px 10px; }
@@ -20,9 +21,71 @@
         .vip { background-color: #26b1a5; }
         .acm { background-color: #f39c12; }
         .etkinlik { background-color: #e74c3c; }
-        .footer { background-color: #e61a2e; color: white; padding: 20px; text-align: center; margin-top: auto; }
-        .footer b { display: block; font-size: 13px; margin-bottom: 5px; }
-        .footer p { font-size: 11px; margin: 0; opacity: 0.9; }
+
+        /* --- YENİ PATLAMA EFEKTİ STİLLERİ --- */
+        
+        .footer { 
+            background-color: #e61a2e; /* Kırmızı arka planı koruyoruz */
+            color: white; 
+            padding: 25px 20px; /* Biraz daha dikey boşluk */
+            text-align: center; 
+            margin-top: auto; 
+            overflow: hidden; /* Taşmaları gizlemek için */
+        }
+
+        .exploding-text {
+            font-size: 16px; /* Daha büyük ana metin */
+            font-weight: 900; /* Çok kalın yazı */
+            text-transform: uppercase; /* Tüm harfler büyük */
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 0, 0, 0.5); /* Parıltı efekti */
+            display: inline-block; /* Animasyonun çalışması için */
+        }
+
+        .exploding-text span {
+            display: inline-block; /* Her kelime/bölüm ayrı ayrı dönsün */
+            animation: explosion 1s ease-out forwards; /* Patlama animasyonu */
+            opacity: 0; /* Başlangıçta gizli */
+        }
+
+        /* Kelime gecikmeleri */
+        .exploding-text span:nth-child(1) { animation-delay: 0.1s; color: #ffeb3b; } /* DİKKAT sarı olsun */
+        .exploding-text span:nth-child(2) { animation-delay: 0.3s; }
+        .exploding-text span:nth-child(3) { animation-delay: 0.5s; }
+        .exploding-text span:nth-child(4) { animation-delay: 0.7s; }
+
+        .footer-sub {
+            font-size: 11px; 
+            margin-top: 10px; 
+            opacity: 0.9;
+            font-style: italic; /* Alt metni italik yapalım */
+        }
+
+        /* Patlama Animasyonu Tanımı */
+        @keyframes explosion {
+            0% {
+                transform: scale(0.5) rotate(-15deg);
+                opacity: 0;
+                filter: blur(5px) brightness(2);
+            }
+            30% {
+                transform: scale(1.3) rotate(10deg); /* Maksimum büyüme ve dönüş */
+                opacity: 1;
+                filter: blur(0px) brightness(1.5);
+            }
+            60% {
+                transform: scale(0.95) rotate(-5deg); /* Geri sekme */
+            }
+            80% {
+                transform: scale(1.05) rotate(2deg); /* Son bir küçük sekme */
+                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+            }
+            100% {
+                transform: scale(1) rotate(0deg); /* Normal boyut ve duruş */
+                opacity: 1;
+                filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+            }
+        }
     </style>
 </head>
 <body>
@@ -49,14 +112,4 @@
             </div>
             <div class="card etkinlik">
                 <h2>ETKİNLİK ADMİNİ</h2>
-                <p>ETKİNLİK VE ÖDÜLLER İLE İLGİLİ KONULAR İÇİN BANNER EKLEME VE REKLAM TALEPLERİ</p>
-                <div class="info">(ID: TR02)<br>İNCİ HANIM</div>
-            </div>
-        </div>
-        <div class="footer">
-            <b>DİKKAT: KANITINIZ OLMAYAN ŞİKAYETLER DEĞERLENDİRMEYE ALINMAZ.</b>
-            <p>(Ekran görüntüsü veya video kaydı ibraz edilmesi zorunludur.)</p>
-        </div>
-    </div>
-</body>
-</html>
+                <p>ETKİNLİK VE ÖDÜ
