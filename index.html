@@ -14,7 +14,7 @@
             justify-content: center; 
             min-height: 100vh; 
             align-items: center;
-            -webkit-font-smoothing: antialiased; /* Font netliği için */
+            -webkit-font-smoothing: antialiased;
         }
 
         .panel { 
@@ -26,6 +26,26 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
             border-radius: 20px; 
             overflow: hidden; 
+        }
+
+        /* Dil Seçici Alanı */
+        .lang-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+        .lang-btn {
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.2s;
+            filter: grayscale(0.5);
+        }
+        .lang-btn.active {
+            transform: scale(1.3);
+            filter: grayscale(0);
         }
 
         /* Header - Tüm Yazılar Kalın */
@@ -60,13 +80,13 @@
             border-bottom: 2px solid rgba(255,255,255,0.5); 
             padding-bottom: 5px; 
             width: 90%; 
-            font-weight: 900; /* Ekstra Kalın */
+            font-weight: 900; 
         }
         .card p { 
             font-size: 12px; 
             margin: 0 0 10px 0; 
             line-height: 1.3; 
-            font-weight: 700; /* Kalın */
+            font-weight: 700; 
         }
         .info { 
             font-size: 12px; 
@@ -97,7 +117,6 @@
             text-align: center;
             border: 3px solid #ff4d6d;
             box-shadow: 0 0 20px rgba(230, 26, 46, 0.5);
-            /* PATLAMA ANİMASYONU */
             animation: pulse-explosion 0.6s infinite alternate;
         }
 
@@ -114,7 +133,7 @@
         .alert-box b {
             display: block;
             font-size: 14px;
-            font-weight: 900; /* En kalın yazı */
+            font-weight: 900; 
             margin-bottom: 5px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
@@ -126,7 +145,6 @@
             opacity: 1;
         }
 
-        /* 3D Emoji Dönme */
         .emoji-3d {
             display: inline-block;
             animation: rotate 2s linear infinite;
@@ -137,60 +155,91 @@
             to { transform: rotateY(360deg); }
         }
 
-        /* Patlama Efekti (Büyüme ve Parlama) */
         @keyframes pulse-explosion {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 10px rgba(230, 26, 46, 0.6);
-                filter: brightness(1);
-            }
-            100% {
-                transform: scale(1.02);
-                box-shadow: 0 0 30px rgba(230, 26, 46, 0.9), 0 0 10px white;
-                filter: brightness(1.2);
-            }
+            0% { transform: scale(0.95); box-shadow: 0 0 10px rgba(230, 26, 46, 0.6); filter: brightness(1); }
+            100% { transform: scale(1.02); box-shadow: 0 0 30px rgba(230, 26, 46, 0.9), 0 0 10px white; filter: brightness(1.2); }
         }
     </style>
 </head>
 <body>
 
     <div class="panel">
-        <div class="header">
-            <h1>RESMİ DESTEK MERKEZİ</h1>
-            <p>OFFICIAL</p>
+        <div class="lang-selector">
+            <span class="lang-btn active" onclick="setLanguage('tr')" title="Türkçe">🇹🇷</span>
+            <span class="lang-btn" onclick="setLanguage('az')" title="Azərbaycan">🇦🇿</span>
         </div>
 
-        <div class="container">
-            <div class="card super">
-                <h2>SÜPER ADMİN</h2>
-                <p>Uygulama yönetimi ve genel denetim.</p>
-                <div class="info">(ID: TR01) MİRAÇ BEY</div>
-            </div>
-            <div class="card vip">
-                <h2>VIP ADMİN</h2>
-                <p>ŞARJ ÖDÜLLERİ ÖZEL HEDİYE VE BENZERİ KONULAR İÇİN</p>
-                <div class="info">(TR05) NARE HANIM</div>
-            </div>
-            <div class="card acm">
-                <h2>ACM ADMİN</h2>
-                <p>Uygulamanın huzuru, susturma ve yasaklama.</p>
-                <div class="info">(ID: TR72) AZADİ BEY</div>
-            </div>
-            <div class="card etkinlik">
-                <h2>ETKİNLİK ADMİNİ</h2>
-                <p>ETKİNLİK VE ÖDÜLLER İLE İLGİLİ KONULAR İÇİN REKLAM TALEPLERİ</p>
-                <div class="info">(ID: TR02) İNCİ HANIM</div>
-            </div>
+        <div class="header">
+            <h1 id="main-title">RESMİ DESTEK MERKEZİ</h1>
+            <p id="sub-title">OFFICIAL</p>
         </div>
+
+        <div class="container" id="admin-container">
+            </div>
 
         <div class="footer">
             <div class="alert-box">
-                <h3><span class="emoji-3d">🚨</span> ÖNEMLİ <span class="emoji-3d">🚨</span></h3>
-                <b>DİKKAT: KANITINIZ OLMAYAN ŞİKAYETLER DEĞERLENDİRMEYE ALINMAZ.</b>
-                <p>(Ekran görüntüsü veya video kaydı zorunludur.)</p>
+                <h3 id="alert-title"><span class="emoji-3d">🚨</span> ÖNEMLİ <span class="emoji-3d">🚨</span></h3>
+                <b id="alert-bold">DİKKAT: KANITINIZ OLMAYAN ŞİKAYETLER DEĞERLENDİRMEYE ALINMAZ.</b>
+                <p id="alert-p">(Ekran görüntüsü veya video kaydı zorunludur.)</p>
             </div>
         </div>
     </div>
 
+    <script>
+        const content = {
+            tr: {
+                title: "RESMİ DESTEK MERKEZİ",
+                alert_h: "ÖNEMLİ",
+                alert_b: "DİKKAT: KANITINIZ OLMAYAN ŞİKAYETLER DEĞERLENDİRMEYE ALINMAZ.",
+                alert_p: "(Ekran görüntüsü veya video kaydı zorunludur.)",
+                admins: [
+                    { class: "super", h: "SÜPER ADMİN", p: "Uygulama yönetimi ve genel denetim.", info: "(ID: TR01) MİRAÇ BEY" },
+                    { class: "vip", h: "VIP ADMİN", p: "ŞARJ ÖDÜLLERİ ÖZEL HEDİYE VE BENZERİ KONULAR İÇİN", info: "(TR05) NARE HANIM" },
+                    { class: "acm", h: "ACM ADMİN", p: "Uygulamanın huzuru, susturma ve yasaklama.", info: "(ID: TR72) AZADİ BEY" },
+                    { class: "etkinlik", h: "ETKİNLİK ADMİNİ", p: "ETKİNLİK VE ÖDÜLLER İLE İLGİLİ KONULAR İÇİN REKLAM TALEPLERİ", info: "(ID: TR02) İNCİ HANIM" }
+                ]
+            },
+            az: {
+                title: "RƏSMİ DƏSTƏK MƏRKƏZİ",
+                alert_h: "VACİB",
+                alert_b: "DİQQƏT: SÜBUTUNUZ OLMAYAN ŞİKAYƏTLƏRƏ BAXILMIR.",
+                alert_p: "(Ekran görüntüsü və ya video qeydi mütləqdir.)",
+                admins: [
+                    { class: "super", h: "SÜPER ADMİN", p: "Tətbiq idarəetməsi və ümumi nəzarət.", info: "(ID: AZ01) MİRAÇ BƏY" },
+                    { class: "vip", h: "VIP ADMİN", p: "HƏDİYYƏLƏR VƏ ÖZƏL MÖVZULAR ÜÇÜN.", info: "(AZ05) NARE XANIM" }
+                ]
+            }
+        };
+
+        function setLanguage(lang) {
+            // Aktif buton görseli
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Metinleri Güncelle
+            document.getElementById('main-title').innerText = content[lang].title;
+            document.getElementById('alert-title').innerHTML = `<span class="emoji-3d">🚨</span> ${content[lang].alert_h} <span class="emoji-3d">🚨</span>`;
+            document.getElementById('alert-bold').innerText = content[lang].alert_b;
+            document.getElementById('alert-p').innerText = content[lang].alert_p;
+
+            // Admin Kartlarını Güncelle
+            const container = document.getElementById('admin-container');
+            container.innerHTML = '';
+            
+            content[lang].admins.forEach(adm => {
+                container.innerHTML += `
+                    <div class="card ${adm.class}">
+                        <h2>${adm.h}</h2>
+                        <p>${adm.p}</p>
+                        <div class="info">${adm.info}</div>
+                    </div>
+                `;
+            });
+        }
+
+        // Başlangıç dili Türkçe
+        setLanguage('tr');
+    </script>
 </body>
 </html>
