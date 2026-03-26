@@ -48,7 +48,7 @@
             filter: grayscale(0);
         }
 
-        /* Header - Tüm Yazılar Kalın */
+        /* Header */
         .header { 
             background: linear-gradient(135deg, #1a3a5a 0%, #2c527a 100%); 
             color: white; 
@@ -59,9 +59,15 @@
         .header h1 { margin: 0; font-size: 26px; font-weight: 900; letter-spacing: 1px; }
         .header p { margin: 8px 0 0; font-size: 14px; letter-spacing: 4px; font-weight: 900; opacity: 1; }
 
-        .container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 20px; flex-grow: 1; }
+        .container { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+            padding: 20px; 
+            flex-grow: 1; 
+        }
 
-        /* Kartlar - Yazılar Kalın ve Net */
+        /* Kartlar */
         .card { 
             border-radius: 25px; 
             padding: 15px; 
@@ -74,6 +80,13 @@
             align-items: center; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
+
+        /* SÜPER ADMİN İÇİN TAM GENİŞLİK */
+        .card.super { 
+            grid-column: 1 / span 2; 
+            background: #b51a66;
+        }
+
         .card h2 { 
             font-size: 16px; 
             margin: 0 0 10px 0; 
@@ -96,19 +109,12 @@
             border-radius: 12px; 
         }
 
-        /* Renk Paleti */
-        .super { background: #b51a66; }
-        .vip { background: #26b1a5; }
+        /* Renkler */
         .acm { background: #f39c12; }
         .etkinlik { background: #e74c3c; }
 
-        /* PATLAYAN KIRMIZI ALAN */
-        .footer { 
-            padding: 20px; 
-            background-color: white; 
-            margin-top: auto;
-        }
-
+        /* Footer ve Patlama Efekti */
+        .footer { padding: 20px; background-color: white; margin-top: auto; }
         .alert-box {
             background: #e61a2e;
             color: white;
@@ -119,45 +125,15 @@
             box-shadow: 0 0 20px rgba(230, 26, 46, 0.5);
             animation: pulse-explosion 0.6s infinite alternate;
         }
+        .alert-box h3 { margin: 0 0 8px 0; font-size: 18px; font-weight: 900; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .alert-box b { display: block; font-size: 14px; font-weight: 900; margin-bottom: 5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        .alert-box p { font-size: 12px; font-weight: 800; margin: 0; }
 
-        .alert-box h3 {
-            margin: 0 0 8px 0;
-            font-size: 18px;
-            font-weight: 900;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .alert-box b {
-            display: block;
-            font-size: 14px;
-            font-weight: 900; 
-            margin-bottom: 5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .alert-box p {
-            font-size: 12px;
-            font-weight: 800;
-            margin: 0;
-            opacity: 1;
-        }
-
-        .emoji-3d {
-            display: inline-block;
-            animation: rotate 2s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-
+        .emoji-3d { display: inline-block; animation: rotate 2s linear infinite; }
+        @keyframes rotate { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
         @keyframes pulse-explosion {
-            0% { transform: scale(0.95); box-shadow: 0 0 10px rgba(230, 26, 46, 0.6); filter: brightness(1); }
-            100% { transform: scale(1.02); box-shadow: 0 0 30px rgba(230, 26, 46, 0.9), 0 0 10px white; filter: brightness(1.2); }
+            0% { transform: scale(0.95); box-shadow: 0 0 10px rgba(230, 26, 46, 0.6); }
+            100% { transform: scale(1.02); box-shadow: 0 0 30px rgba(230, 26, 46, 0.9), 0 0 10px white; }
         }
     </style>
 </head>
@@ -165,13 +141,13 @@
 
     <div class="panel">
         <div class="lang-selector">
-            <span class="lang-btn active" onclick="setLanguage('tr')" title="Türkçe">🇹🇷</span>
-            <span class="lang-btn" onclick="setLanguage('az')" title="Azərbaycan">🇦🇿</span>
+            <span class="lang-btn active" onclick="setLanguage('tr', event)" title="Türkçe">🇹🇷</span>
+            <span class="lang-btn" onclick="setLanguage('az', event)" title="Azərbaycan">🇦🇿</span>
         </div>
 
         <div class="header">
             <h1 id="main-title">RESMİ DESTEK MERKEZİ</h1>
-            <p id="sub-title">OFFICIAL</p>
+            <p>OFFICIAL</p>
         </div>
 
         <div class="container" id="admin-container">
@@ -195,9 +171,8 @@
                 alert_p: "(Ekran görüntüsü veya video kaydı zorunludur.)",
                 admins: [
                     { class: "super", h: "SÜPER ADMİN", p: "Uygulama yönetimi ve genel denetim.", info: "(ID: TR01) MİRAÇ BEY" },
-                    { class: "vip", h: "VIP ADMİN", p: "ŞARJ ÖDÜLLERİ ÖZEL HEDİYE VE BENZERİ KONULAR İÇİN", info: "(TR05) NARE HANIM" },
                     { class: "acm", h: "ACM ADMİN", p: "Uygulamanın huzuru, susturma ve yasaklama.", info: "(ID: TR72) AZADİ BEY" },
-                    { class: "etkinlik", h: "ETKİNLİK ADMİNİ", p: "ETKİNLİK VE ÖDÜLLER İLE İLGİLİ KONULAR İÇİN REKLAM TALEPLERİ", info: "(ID: TR02) İNCİ HANIM" }
+                    { class: "etkinlik", h: "ETKİNLİK ADMİNİ", p: "ETKİNLİK VE ÖDÜLLER İÇİN REKLAM TALEPLERİ", info: "(ID: TR02) İNCİ HANIM" }
                 ]
             },
             az: {
@@ -206,24 +181,28 @@
                 alert_b: "DİQQƏT: SÜBUTUNUZ OLMAYAN ŞİKAYƏTLƏRƏ BAXILMIR.",
                 alert_p: "(Ekran görüntüsü və ya video qeydi mütləqdir.)",
                 admins: [
-                    { class: "super", h: "SÜPER ADMİN", p: "Tətbiq idarəetməsi və ümumi nəzarət.", info: "(ID: AZ01) MİRAÇ BƏY" },
-                    { class: "vip", h: "VIP ADMİN", p: "HƏDİYYƏLƏR VƏ ÖZƏL MÖVZULAR ÜÇÜN.", info: "(AZ05) NARE XANIM" }
+                    { class: "super", h: "SÜPER ADMİN", p: "Tətbiq idarəetməsi və ümumi nəzarət.", info: "(ID: AZ01) MİRAÇ BƏY" }
                 ]
             }
         };
 
-        function setLanguage(lang) {
-            // Aktif buton görseli
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        function setLanguage(lang, event) {
+            // Dil butonlarının aktiflik durumunu güncelle
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Eğer bir click event'inden geliyorsa o butonu, gelmiyorsa (ilk yükleme) Türkçe butonunu aktif yap
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                buttons[0].classList.add('active');
+            }
 
-            // Metinleri Güncelle
             document.getElementById('main-title').innerText = content[lang].title;
             document.getElementById('alert-title').innerHTML = `<span class="emoji-3d">🚨</span> ${content[lang].alert_h} <span class="emoji-3d">🚨</span>`;
             document.getElementById('alert-bold').innerText = content[lang].alert_b;
             document.getElementById('alert-p').innerText = content[lang].alert_p;
 
-            // Admin Kartlarını Güncelle
             const container = document.getElementById('admin-container');
             container.innerHTML = '';
             
@@ -238,8 +217,8 @@
             });
         }
 
-        // Başlangıç dili Türkçe
-        setLanguage('tr');
+        // Sayfa ilk açıldığında Türkçe başlasın
+        window.onload = () => setLanguage('tr');
     </script>
 </body>
 </html>
