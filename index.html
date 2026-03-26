@@ -28,7 +28,7 @@
             overflow: hidden; 
         }
 
-        /* Dil Seçici Alanı */
+        /* Dil Seçici */
         .lang-selector {
             display: flex;
             justify-content: center;
@@ -81,7 +81,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* SÜPER ADMİN İÇİN TAM GENİŞLİK */
+        /* SÜPER ADMİN ÜSTTE VE TAM GENİŞLİK */
         .card.super { 
             grid-column: 1 / span 2; 
             background: #b51a66;
@@ -181,21 +181,21 @@
                 alert_b: "DİQQƏT: SÜBUTUNUZ OLMAYAN ŞİKAYƏTLƏRƏ BAXILMIR.",
                 alert_p: "(Ekran görüntüsü və ya video qeydi mütləqdir.)",
                 admins: [
-                    { class: "super", h: "SÜPER ADMİN", p: "Tətbiq idarəetməsi və ümumi nəzarət.", info: "(ID: AZ01) MİRAÇ BƏY" }
+                    { class: "super", h: "SÜPER ADMİN", p: "Tətbiq idarəetməsi və ümumi nəzarət.", info: "(ID: AZ01) MİRAÇ BƏY" },
+                    { class: "acm", h: "ADMİN", p: "ADMİN.", info: "(ID: AZ01) PATRONİÇA XANIM" },
+                    { class: "etkinlik", h: "ADMİN", p: "ADMİN", info: "(ID: AZ02) ÖMÜR BƏY" }
                 ]
             }
         };
 
         function setLanguage(lang, event) {
-            // Dil butonlarının aktiflik durumunu güncelle
             const buttons = document.querySelectorAll('.lang-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             
-            // Eğer bir click event'inden geliyorsa o butonu, gelmiyorsa (ilk yükleme) Türkçe butonunu aktif yap
-            if (event && event.target) {
-                event.target.classList.add('active');
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add('active');
             } else {
-                buttons[0].classList.add('active');
+                buttons[lang === 'tr' ? 0 : 1].classList.add('active');
             }
 
             document.getElementById('main-title').innerText = content[lang].title;
@@ -217,7 +217,6 @@
             });
         }
 
-        // Sayfa ilk açıldığında Türkçe başlasın
         window.onload = () => setLanguage('tr');
     </script>
 </body>
